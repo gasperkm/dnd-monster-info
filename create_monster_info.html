@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>D&D 5e monster creator</title>
+  <link rel="stylesheet" type="text/css" href="css/style_sheet.css">
+  <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body>
+	<div id="openmonmain" class="option"><p>Display monster info or Edit monster info from XML file</p>
+		<div id="openmon">
+			<div>Open an XML file with monster info: <input type="file" id="files" name="files[]" /></div>
+		</div>
+		<div>Clear the current monster: <button type="button" onclick="clearMonster(0)">Clear</button></div>
+		<div>Use general commoner stats: <button type="button" onclick="clearMonster(1)">Commoner stats</button></div>
+		<div>Go to bottom of page to export to XML and HTML: <button type="button" onclick="gotoBottom()">Go to bottom</button></div>
+	</div>
+	<div id="result">Information: </div>
+	<br/>
+   
+	<div id="main" class="optionmain"><p>Edit or create monster info</p>
+		<div class="maindiv"><span class="maintitle">Monster name:</span><input type="text" id="monname" name="monname" value=""></div>
+		<br/>
+		<div class="maindiv">
+			<div><span class="maintitle">Monster type:</span></div>
+			<span class="mainsubtitle">Size:</span>
+			<select id="monsize">
+				<option value="tiny">tiny</option>
+				<option value="small">small</option>
+				<option value="medium">medium</option>
+				<option value="large">large</option>
+				<option value="huge">huge</option>
+				<option value="gargantuan">gargantuan</option>
+			</select> 
+			<span class="mainsubtitle">Type:</span>
+			<select id="montype">
+				<option value="aberration">aberration</option>
+				<option value="beast">beast</option>
+				<option value="celestial">celestial</option>
+				<option value="construct">construct</option>
+				<option value="dragon">dragon</option>
+				<option value="elemental">elemental</option>
+				<option value="fey">fey</option>
+				<option value="fiend">fiend</option>
+				<option value="giant">giant</option>
+				<option value="humanoid">humanoid</option>
+				<option value="monstrosity">monstrosity</option>
+				<option value="ooze">ooze</option>
+				<option value="plant">plant</option>
+				<option value="undead">undead</option>
+			</select> 
+			<span class="mainsubtitle">Alignment:</span>
+			<select id="monalign">
+				<option value="lg">lawful good</option>
+				<option value="ng">neutral good</option>
+				<option value="cg">chaotic good</option>
+				<option value="ln">lawful neutral</option>
+				<option value="nn">neutral</option>
+				<option value="cn">chaotic neutral</option>
+				<option value="le">lawful evil</option>
+				<option value="ne">neutral evil</option>
+				<option value="ce">chaotic evil</option>
+				<option value="unaligned">unaligned</option>
+				<option value="any">any alignment</option>
+			</select>
+		</div>
+		<div class="maindiv"><span class="maintitle">Monster AC:</span><input type="text" id="monac" name="monac" value=""></div>
+		<div class="maindiv"><span class="maintitle">Monster HP:</span><input type="text" id="monhp" name="monhp" value=""></div>
+		<div class="maindiv"><span class="maintitle">Monster speed:</span><input type="text" id="monspeed" name="monspeed" value=""></div>
+		<br/>
+		<div class="maindiv">
+			<div><span class="maintitle">Monster abilities:</span></div>
+			<div class="sublist"><span class="mainsubtitle">Strength:</span><input type="number" id="monstr" name="monstr" value="" onchange="calcModifier(0)"> <span id="monstrmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Dexterity:</span><input type="number" id="mondex" name="mondex" value="" onchange="calcModifier(1)"> <span id="mondexmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Constitution:</span><input type="number" id="moncon" name="moncon" value="" onchange="calcModifier(2)"> <span id="monconmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Intelligence:</span><input type="number" id="monint" name="monint" value="" onchange="calcModifier(3)"> <span id="monintmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Wisdom:</span><input type="number" id="monwis" name="monwis" value="" onchange="calcModifier(4)"> <span id="monwismod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Charisma:</span><input type="number" id="moncha" name="moncha" value="" onchange="calcModifier(5)"> <span id="monchamod"></span></div>
+		</div>
+		<br/>
+		<div class="maindiv"><span class="maintitle">Monster saving throws:</span><input type="text" id="monst" name="monst" value=""></div>
+		<div class="maindiv"><span class="maintitle">Monster skills:</span><input type="text" id="monskills" name="monskills" value=""></div>
+		<br/>
+		<div class="maindiv">
+			<div><span class="maintitle">Damage and conditions:</span></div>
+			<div class="sublist"><span class="mainsubtitle">Damage immunities:</span><input type="text" id="mondamimmun" name="mondamimmun" value=""></div>
+			<div class="sublist"><span class="mainsubtitle">Damage resistances:</span><input type="text" id="mondamresist" name="mondamresist" value=""></div>
+			<div class="sublist"><span class="mainsubtitle">Damage vulnerabilities:</span><input type="text" id="mondamvuln" name="mondamvuln" value=""></div>
+			<div class="sublist"><span class="mainsubtitle">Condition immunities:</span><input type="text" id="monconimmun" name="monconimmun" value=""></div>
+			<div class="sublist"><span class="mainsubtitle">Condition resistances:</span><input type="text" id="monconresist" name="monconresist" value=""></div>
+			<div class="sublist"><span class="mainsubtitle">Condition vulnerabilities:</span><input type="text" id="monconvuln" name="monconvuln" value=""></div>
+		</div>
+		<br/>
+		<div class="maindiv"><span class="maintitle">Monster senses:</span><input type="text" id="monsenses" name="monsenses" value=""></div>
+		<div class="maindiv"><span class="maintitle">Monster languages:</span><input type="text" id="monlang" name="monlang" value=""></div>
+		<div class="maindiv"><span class="maintitle">Monster challenge:</span>
+		<select id="moncr" onchange="changeXP()">
+			<option value="0">0</option><option value="1/8">1/8</option><option value="1/4">1/4</option><option value="1/2">1/2</option>
+			<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+			<option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+			<option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+			<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+			<option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+			<option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+			<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+			<option value="29">29</option><option value="30">30</option>
+		</select>
+		<input type="text" id="monxp" name="monxp" value="" disabled></div>
+		<br/>
+		<div id="specials" class="maindiv">
+			<div><span class="maintitle">Special attacks/actions:</span><input type="number" id="nrspecial" name="nrspecial" value="" disabled> <button type="button" onclick="addSpecial(0)">+</button> <button type="button" onclick="addSpecial(1)">-</button></div>
+		</div>
+		<br/>
+		<div id="actions" class="maindiv">
+			<div><span class="maintitle">Actions:</span><input type="number" id="nraction" name="nraction" value="" disabled> <button type="button" onclick="addAction(0)">+</button> <button type="button" onclick="addAction(1)">-</button></div>
+		</div>
+		<br/>
+		<div id="legendactions" class="maindiv">
+			<div><span class="maintitle">Legendary actions:</span><input type="number" id="nrlegend" name="nrlegend" value="" disabled> <button type="button" onclick="addLegend(0)">+</button> <button type="button" onclick="addLegend(1)">-</button></div>
+			<textarea type="text" id="mondesclegact" name="mondesclegact" class="montextdesc"></textarea>
+		</div>
+		<br/>
+		<div id="reactions" class="maindiv">
+			<div><span class="maintitle">Reactions:</span><input type="number" id="nrreaction" name="nrreaction" value="" disabled> <button type="button" onclick="addReaction(0)">+</button> <button type="button" onclick="addReaction(1)">-</button></div>
+		</div>
+		<br/>
+		<div class="maindiv">
+			<div><span class="maintitle">Additional description:</span></div>
+			<textarea type="text" id="mondesc" name="mondesc"></textarea>
+		</div>
+		<div class="maindiv"><span class="maintitle">Image URL:</span><input type="text" id="monimage" name="monimage" value=""></div>
+		<br/>
+		<div id="savemon" class="maindiv">
+			<button type="button" onclick="exportMonster()">Export monster to XML and HTML</button> <button type="button" onclick="gotoTop()">Go to top</button>
+		</div>
+		<br/>
+		<div class="maindiv">
+			<div><span class="maintitle">The exported XML:</span></div>
+			<textarea id="savexml" name="savexml"></textarea>
+		</div>
+	</div>
+   
+</body>
+</html>
