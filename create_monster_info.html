@@ -11,7 +11,7 @@
 <body>
 	<div id="openmonmain" class="option"><p>Display monster info or Edit monster info from XML file</p>
 		<div id="openmon">
-			<div>Open an XML file with monster info: <input type="file" id="files" name="files[]" /></div>
+			<div>Open an XML file with monster info: <input type="file" id="files" name="files[]" accept=".xml" /></div>
 		</div>
 		<div>Clear the current monster: <button type="button" onclick="clearMonster(0)">Clear</button></div>
 		<div>Use general commoner stats: <button type="button" onclick="clearMonster(1)">Commoner stats</button></div>
@@ -130,7 +130,7 @@
 			<div><span class="maintitle">Additional description:</span></div>
 			<textarea type="text" id="mondesc" name="mondesc"></textarea>
 		</div>
-		<div class="maindiv"><span class="maintitle">Image URL:</span><input type="text" id="monimage" name="monimage" value=""></div>
+		<div class="maindiv"><span class="maintitle">Image name:</span><input type="text" id="monimage" name="monimage" value=""></div>
 		<br/>
 		<div id="savemon" class="maindiv">
 			<button type="button" onclick="exportMonster()">Export monster to XML and HTML</button> <button type="button" onclick="gotoTop()">Go to top</button>
@@ -139,6 +139,13 @@
 		<div class="maindiv">
 			<div><span class="maintitle">The exported XML:</span></div>
 			<textarea id="savexml" name="savexml"></textarea>
+		</div>
+		<div class="maindiv">
+			<div><span class="maintitle">The exported HTML:</span></div>
+			<textarea id="savehtml" name="savehtml"></textarea>
+		</div>
+		<div class="maindiv">
+			<button type="button" onclick="showHtml()">Show the HTML in a new window</button>
 		</div>
 	</div>
    

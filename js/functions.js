@@ -1,7 +1,5 @@
 // functions.js
 
-//var iRows = 4;
-//var iCols = 100;
 var loadError = 0;
 
 function gotoBottom()
@@ -43,8 +41,6 @@ function addSpecial(value)
     descEl.setAttribute('id', "monspecdesc" + currentId);
     descEl.setAttribute('name', "monspecdesc" + currentId);
     descEl.setAttribute('class', "montextdesc");
-//    descEl.setAttribute('rows', iRows);
-//    descEl.setAttribute('cols', iCols);
     
     divEl.appendChild(titleEl);
     divEl.appendChild(descEl);
@@ -56,7 +52,7 @@ function addSpecial(value)
     currentId = document.getElementById("nrspecial").value;
     document.getElementById("nrspecial").value = Number(Number(document.getElementById("nrspecial").value) - 1);
 	
-	document.getElementById("specials").removeChild(document.getElementById("specials").getElementsByTagName("div")[currentId]);
+    document.getElementById("specials").removeChild(document.getElementById("specials").getElementsByTagName("div")[currentId]);
   }
 }
 
@@ -85,8 +81,6 @@ function addAction(value)
     descEl.setAttribute('id', "monactdesc" + currentId);
     descEl.setAttribute('name', "monactdesc" + currentId);
     descEl.setAttribute('class', "montextdesc");
-//    descEl.setAttribute('rows', iRows);
-//    descEl.setAttribute('cols', iCols);
     
     divEl.appendChild(titleEl);
     divEl.appendChild(descEl);
@@ -98,7 +92,7 @@ function addAction(value)
     currentId = document.getElementById("nraction").value;
     document.getElementById("nraction").value = Number(Number(document.getElementById("nraction").value) - 1);
 	
-	document.getElementById("actions").removeChild(document.getElementById("actions").getElementsByTagName("div")[currentId]);
+    document.getElementById("actions").removeChild(document.getElementById("actions").getElementsByTagName("div")[currentId]);
   }
 }
 
@@ -127,8 +121,6 @@ function addLegend(value)
     descEl.setAttribute('id', "monlegactdesc" + currentId);
     descEl.setAttribute('name', "monlegactdesc" + currentId);
     descEl.setAttribute('class', "montextdesc");
-//    descEl.setAttribute('rows', iRows);
-//    descEl.setAttribute('cols', iCols);
     
     divEl.appendChild(titleEl);
     divEl.appendChild(descEl);
@@ -140,7 +132,7 @@ function addLegend(value)
     currentId = document.getElementById("nrlegend").value;
     document.getElementById("nrlegend").value = Number(Number(document.getElementById("nrlegend").value) - 1);
 	
-	document.getElementById("legendactions").removeChild(document.getElementById("legendactions").getElementsByTagName("div")[currentId]);
+    document.getElementById("legendactions").removeChild(document.getElementById("legendactions").getElementsByTagName("div")[currentId]);
   }
 }
 
@@ -169,8 +161,6 @@ function addReaction(value)
     descEl.setAttribute('id', "monreactdesc" + currentId);
     descEl.setAttribute('name', "monreactdesc" + currentId);
     descEl.setAttribute('class', "montextdesc");
-//    descEl.setAttribute('rows', iRows);
-//    descEl.setAttribute('cols', iCols);
     
     divEl.appendChild(titleEl);
     divEl.appendChild(descEl);
@@ -182,7 +172,7 @@ function addReaction(value)
     currentId = document.getElementById("nrreaction").value;
     document.getElementById("nrreaction").value = Number(Number(document.getElementById("nrreaction").value) - 1);
 	
-	document.getElementById("reactions").removeChild(document.getElementById("reactions").getElementsByTagName("div")[currentId]);
+    document.getElementById("reactions").removeChild(document.getElementById("reactions").getElementsByTagName("div")[currentId]);
   }
 }
 
@@ -229,36 +219,33 @@ function clearMonster(value)
     getXP(0,0);
     iCount = document.getElementById("nrspecial").value;
     for(var i = 1; i <= iCount; i++)
-	  addSpecial(1);
-//	  document.getElementById("specials").removeChild(document.getElementById("specials").getElementsByTagName("div")[1]);
+      addSpecial(1);
     document.getElementById("nrspecial").value = 0;
     iCount = document.getElementById("nraction").value;
     for(var i = 1; i <= iCount; i++)
-	  addAction(1);
-//	  document.getElementById("actions").removeChild(document.getElementById("actions").getElementsByTagName("div")[1]);
+      addAction(1);
     document.getElementById("nraction").value = 0;
     document.getElementById("mondesclegact").value = "";
     iCount = document.getElementById("nrlegend").value;
     for(var i = 1; i <= iCount; i++)
-	  addLegend(1);
-//	  document.getElementById("legendactions").removeChild(document.getElementById("legendactions").getElementsByTagName("div")[1]);
+      addLegend(1);
     document.getElementById("nrlegend").value = 0;
     iCount = document.getElementById("nrreaction").value;
     for(var i = 1; i <= iCount; i++)
-	  addReaction(1);
-//	  document.getElementById("reactions").removeChild(document.getElementById("reactions").getElementsByTagName("div")[1]);
+      addReaction(1);
     document.getElementById("nrreaction").value = 0;
     document.getElementById("mondesc").value = "";
-//	document.getElementById("mondesc").setAttribute('rows', iRows);
-//	document.getElementById("mondesc").setAttribute('cols', iCols);
     document.getElementById("mondesc").setAttribute('class', "montextdesc");
     document.getElementById("monimage").value = "";
 	
-	document.getElementById("savexml").value = "";
-	if(value == 0)
-	  document.getElementById("files").value = null;
+    document.getElementById("savexml").value = "";
+    document.getElementById("savehtml").value = "";
+    if(value == 0)
+      document.getElementById("files").value = null;
 	
-	calcModifier(0); calcModifier(1); calcModifier(2); calcModifier(3); calcModifier(4); calcModifier(5);
+    calcModifier(0); calcModifier(1); calcModifier(2); calcModifier(3); calcModifier(4); calcModifier(5);
+
+    document.getElementById("result").innerHTML = "Information:";
   }
   // clear the monster and fill with commoner values
   else if(value == 1)
@@ -290,40 +277,39 @@ function clearMonster(value)
     getXP(0,0);
     iCount = document.getElementById("nrspecial").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("specials").removeChild(document.getElementById("specials").getElementsByTagName("div")[1]);
+      addSpecial(1);
     document.getElementById("nrspecial").value = 0;
-	iCount = document.getElementById("nraction").value;
-    document.getElementById("nraction").value = 0;
-	if(iCount > 0)
-	  for(var i = 1; i <= iCount; i++)
-	    document.getElementById("actions").removeChild(document.getElementById("actions").getElementsByTagName("div")[1]);
-	addAction(0);
-	document.getElementById("monact0").value = "Club";
-	document.getElementById("monactdesc0").value = "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 2 (1d4) bludgeoning damage.";
+    iCount = document.getElementById("nraction").value;
+    for(var i = 1; i <= iCount; i++)
+      addAction(1);
+    addAction(0);
+    document.getElementById("monact0").value = "Club";
+    document.getElementById("monactdesc0").value = "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 2 (1d4) bludgeoning damage.";
     document.getElementById("mondesclegact").value = "";
     iCount = document.getElementById("nrlegend").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("legendactions").removeChild(document.getElementById("legendactions").getElementsByTagName("div")[1]);
+      addLegend(1);
     document.getElementById("nrlegend").value = 0;
     iCount = document.getElementById("nrreaction").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("reactions").removeChild(document.getElementById("reactions").getElementsByTagName("div")[1]);
+      addReaction(1);
     document.getElementById("nrreaction").value = 0;
     document.getElementById("mondesc").value = "Commoners include peasants, serfs, slaves, servants, pilgrims, merchants, artisans and hermits.";
-//	document.getElementById("mondesc").setAttribute('rows', iRows);
-//	document.getElementById("mondesc").setAttribute('cols', iCols);
     document.getElementById("mondesc").setAttribute('class', "montextdesc");
     document.getElementById("monimage").value = "";
 	
-	document.getElementById("savexml").value = "";
-	document.getElementById("files").value = null;
+    document.getElementById("savexml").value = "";
+    document.getElementById("savehtml").value = "";
+    document.getElementById("files").value = null;
 	
-	calcModifier(0); calcModifier(1); calcModifier(2); calcModifier(3); calcModifier(4); calcModifier(5);
+    calcModifier(0); calcModifier(1); calcModifier(2); calcModifier(3); calcModifier(4); calcModifier(5);
+
+    document.getElementById("result").innerHTML = "Information: Monster info updated with Commoner stats!";
   }
   else
   {
     document.getElementById("result").innerHTML = "Information: Unknown clear type.";
-	loadError = 1;
+    loadError = 1;
   }
 }
 
@@ -354,10 +340,10 @@ function getAlignment(input, dir)
     else if(input == "any alignment")
       document.getElementById("monalign").value = "any";
     else
-	{
+    {
       document.getElementById("result").innerHTML = "Information: Unrecognized alignment!";
-	  loadError = 1;
-	}
+      loadError = 1;
+    }
   }
   else if(dir == 1)
   {
@@ -385,12 +371,12 @@ function getAlignment(input, dir)
     else if(input == "any")
       output = "any alignment";
     else
-	{
+    {
       document.getElementById("result").innerHTML = "Information: Unrecognized alignment!";
-	  loadError = 1;
-	}
+      loadError = 1;
+    }
 	  
-	return output;
+    return output;
   }
 }
 
@@ -466,11 +452,11 @@ function getXP(value, dir)
       document.getElementById("monxp").value = "135,000 XP";
     else if(value == "30")
       document.getElementById("monxp").value = "155,000 XP";
-	else
-	{
+    else
+    {
       document.getElementById("result").innerHTML = "Information: Unrecognized challenge rating!";
-	  loadError = 1;
-	}
+      loadError = 1;
+    }
   }
 }
 
@@ -502,8 +488,8 @@ function exportMonster()
   if(document.getElementById("monname").value == "")
   {
     document.getElementById("result").innerHTML = "Information: Could not create XML and HTML files, because monster name is not defined!";
-	gotoTop();
-	loadError = 1;
+    gotoTop();
+    loadError = 1;
     return;
   }
   
@@ -619,7 +605,6 @@ function exportMonster()
   // Prepare the XML -----------------------------------
   
   // Prepare the HTML ----------------------------------
-//  htmlString = "<!doctype html>\n<html>\n<head>\n\t<meta charset='utf-8'>\n\t<meta name='viewport' content='initial-scale=1'>\n\t<link href='style/style.css' rel='stylesheet' type='text/css' />\n\t<title>" + document.getElementById("monname").value + " &raquo; Dungeons &amp; Dragons - D&amp;D 5</title>\n</head>\n<body>\n\t<div class='bloc'>\n\t\t<div class='trad'> [ <a href=''>" + document.getElementById("monname").value + "</a> ] </div>\n";
   htmlString = "<!doctype html>\n<html>\n<head>\n\t<meta charset='utf-8'>\n\t<meta name='viewport' content='initial-scale=1'>\n\t<title>" + document.getElementById("monname").value + " &raquo; Dungeons &amp; Dragons - D&amp;D 5</title>\n<style>\n";
   htmlString += "html {font-size:62.5%;}\nbody {padding:0; margin:0; background:white url(\"../images/fond.jpg\") repeat;}\n.titre1 {font-size:2.4rem; text-align:center; padding:20px 10px 10px 10px; font-weight:bold;}\n.titre2 {font-size:1.8rem; text-align:center; padding:10px 10px 0px 10px;}\n.titre3 {font-size:1.4rem; text-align:center; padding: 5px 10px 20px 10px; margin:0 33% 10px 33%; border-bottom:2px solid black;}\n.bloc {width:33%; min-width:400px; padding:15px; margin:0; box-sizing:border-box; font-family: Georgia, \"Times New Roman\", serif; font-size:1.2rem; line-height:140%; text-align:left; Page-Break-Inside:avoid}\n.bloc table {margin:8px 0 0 0; padding:0; }\n.bloc table th {font-weight:bold; font-size:1.0rem; vertical-align:bottom; border-bottom:1px solid black}\n.bloc table td {min-width:25px; font-size:1.0rem; }\n.sansSerif {line-height:140%; font-family: arial, sans-serif; font-size:1.2rem; }\n.nom {padding:0; text-transform:uppercase; letter-spacing:1px; color:#6D0000; font-size:1.6rem; font-weight:bold; }\n.nom:first-letter {font-size:2.4rem;}\n.trad {float:right; margin:2px 0 2px 0; font-family: verdana, arial, sans-serif; font-size:1.2rem;}\n.trad a:link, .trad a:hover, .trad a:visited {color:#B30303; font-weight:normal;}\n.niveau {padding:2px 0 8px 0;}\n.type {padding:2px 0 2px 0;}\n.carac {display:inline-block; padding-left:15px; text-align:center}\n.description {padding:8px 0 8px 0; text-align:justify;}\n.red {color:#6D0000;}\n.rub {color:#6D0000; margin:10px 0 5px 0; border-bottom:1px solid #B30303; font-size:1.4rem; text-transform:uppercase; font-weight:bold;}\n.rub:first-letter {font-size:1.6rem;}\n.source {padding:8px 0 4px 0; text-align:left; letter-spacing:-1px; font-family: verdana, arial, sans-serif; font-size:1.0rem;}\np {padding:0; margin:3px 0 3px 0;}\n.center {text-align:center;}\n.petit {font-size:1.1rem;}\n.trespetit {font-size:1.0rem;}\ntable.carac {margin:0}\ntable.carac td	{padding:0 15px 0 0; font-size:1.2rem;}\nimg.picture {max-width:95%; border:4px solid #888; text-align:center;}\ndiv img.sep-monster {margin:3px 0 3px 0; width=90%; height=4px;}\ndiv svg {width:100%; height:5px;}\ndiv .variant {background-color:#DBE2C2; border-top:4px solid #404040; border-bottom:4px solid #404040; padding:10px; margin:10px 0 0 0;}\n.colG {display:inline-block; width:47%; margin:20px 1% 0 2%; vertical-align: top;}\n.colD {display:inline-block; width:47%; margin:20px 2% 0 1%; vertical-align: top;}\n.colG .bloc {width:100%;}\n.colD .bloc {width:100%;}\n.niveauSort {width:50%; font-size:1.8rem; font-weight:bold; text-align:center; background-color:white; color:black; border:3px solid black; padding:5px; margin:1% 25% 0 25%;}\nimg.poison {float:right; border:0px; margin:0 0 5px 10px}\n.erreur {font-weight:bold; color:red;}\n.gras {font-weight:bold;}\n.gris {background-color:#333333; color:#BBBBBB;}\n.blanc {background-color:#FFFFFF; color:#000000; font-weight:bold;}\ntable.rencontre	td {font-size:1.2rem; }\ntable.resultat {border:1px solid black; border-collapse:separate; border-spacing:0;}\ntable.resultat td {font-size:1.2rem; width:80px; text-align:center; padding:6px;}\n.bloc input {font-size:18px; padding:4px;}\n.bloc input.grise {color:#888}\n.bloc input:focus {color:#000}\n.bloc .output {font-size:42px; line-height:1.2; padding:10px;}\n.bloc select {font-size:14px; padding:4px;}\n@media print {\n\thtml {font-size:50%;}\n\t.bloc {width:100%; min-width:200px; padding:2%;}\n\t.sansSerif {line-height:130%;}\n\t.petit {line-height:120%;}\n\t.trespetit {line-height:110%;}\n}\n@media only screen and (max-device-width:980px) {\n\thtml {font-size:87.5%;}\n\t.colG {width:100%; margin:20px 0 0 0;}\n\t.colD {width:100%; margin:20px 0 0 0;}\n\t.bloc {width:100%;}\n\t.trad {float:none; padding-left:0px;}\n}\n";
   htmlString += "</style>\n</head>\n<body>\n\t<div class='bloc'>\n\t\t<div class='trad'> [ " + document.getElementById("monname").value + " ] </div>\n";
@@ -680,42 +665,42 @@ function exportMonster()
   // Special attacks/actions
   if(document.getElementById("nrspecial").value != 0)
   {
-     for(var i = 0; i < document.getElementById("nrspecial").value; i++)
-	 {
-	    htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monspec" + i).value + "</em></strong>. " + (document.getElementById("monspecdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
-	 }
+    for(var i = 0; i < document.getElementById("nrspecial").value; i++)
+    {
+      htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monspec" + i).value + "</em></strong>. " + (document.getElementById("monspecdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
+    }
   }
   
   // Actions
   htmlString += "\t\t\t<div class='rub'>ACTIONS</div>\n";
   if(document.getElementById("nraction").value != 0)
   {
-     for(var i = 0; i < document.getElementById("nraction").value; i++)
-	 {
-	    htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monact" + i).value + "</em></strong>. " + (document.getElementById("monactdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
-	 }
+    for(var i = 0; i < document.getElementById("nraction").value; i++)
+    {
+      htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monact" + i).value + "</em></strong>. " + (document.getElementById("monactdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
+    }
   }
   
   // Legendary actions
   if(document.getElementById("nrlegend").value != 0)
   {
-     htmlString += "\t\t\t<div class='rub'>LEGENDARY ACTIONS</div>\n";
-     htmlString += "\t\t\t<p>" + document.getElementById("mondesclegact").value + "</p>\n";
+    htmlString += "\t\t\t<div class='rub'>LEGENDARY ACTIONS</div>\n";
+    htmlString += "\t\t\t<p>" + document.getElementById("mondesclegact").value + "</p>\n";
   
-     for(var i = 0; i < document.getElementById("nrlegend").value; i++)
-	 {
-	    htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monlegact" + i).value + "</em></strong>. " + (document.getElementById("monlegactdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
-	 }
+    for(var i = 0; i < document.getElementById("nrlegend").value; i++)
+    {
+      htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monlegact" + i).value + "</em></strong>. " + (document.getElementById("monlegactdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
+    }
   }
   
   // Reactions
   if(document.getElementById("nrreaction").value != 0)
   {
-     htmlString += "\t\t\t<div class='rub'>REACTIONS</div>\n";
-     for(var i = 0; i < document.getElementById("nrreaction").value; i++)
-	 {
-	    htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monreact" + i).value + "</em></strong>. " + (document.getElementById("monreactdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
-	 }
+    htmlString += "\t\t\t<div class='rub'>REACTIONS</div>\n";
+    for(var i = 0; i < document.getElementById("nrreaction").value; i++)
+    {
+      htmlString += "\t\t\t<p><strong><em>" + document.getElementById("monreact" + i).value + "</em></strong>. " + (document.getElementById("monreactdesc" + i).value).replace(/\n/g, "<br/>") + "</p>\n";
+    }
   }
   
   htmlString += "\t\t</div>\n"
@@ -724,7 +709,7 @@ function exportMonster()
   if( document.getElementById("mondesc").value != "" )
   {
     htmlString += "\t\t<div class='rub'>DESCRIPTION</div>\n";
-	htmlString += "\t\t<div class='description'>" + (document.getElementById("mondesc").value).replace(/\n/g, "<br/>") + "</div>\n";
+    htmlString += "\t\t<div class='description'>" + (document.getElementById("mondesc").value).replace(/\n/g, "<br/>") + "</div>\n";
   }
   else
     htmlString += "\t\t<div class='description'></div>\n";
@@ -735,16 +720,32 @@ function exportMonster()
   
   htmlString += "\t</div>\n</body>\n</html>";
 
-  var myWindow = window.open("", "_blank", "resizable=yes,titlebar=yes,fullscreen=yes,menubar=yes,toolbar=yes,scrollbars=yes,status=yes",false);
-  myWindow.document.write(htmlString);
+  document.getElementById("savehtml").value = htmlString;
   // Prepare the HTML ----------------------------------
+}
+
+function showHtml()
+{
+  if( document.getElementById("savehtml").value != "" )
+  {
+    var htmlString = document.getElementById("savehtml").value;
+    var imgString;
+
+    if( document.getElementById("monimage").value != "" )
+    {
+      imgString = document.getElementById("monimage").value;
+      htmlString = htmlString.replace(imgString.substring(2), "saved_monsters/" + imgString.substring(2));
+    }
+
+    var myWindow = window.open("", "_blank", "resizable=yes,titlebar=yes,fullscreen=yes,menubar=yes,toolbar=yes,scrollbars=yes,status=yes",false);
+    myWindow.document.write(htmlString);
+  }
 }
 
 function parseTextAsXml(text)
 {
   var parser = new DOMParser();
   xmlDom = parser.parseFromString(text, "text/xml");
-//  alert(text);
   clearMonster(2);
 
   var temp, temp2;
@@ -835,27 +836,25 @@ function parseTextAsXml(text)
   for(var i = 0; i < iCount; i++)
   {
     temp = xmlDom.getElementsByTagName("special")[0].getElementsByTagName("action")[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-	temp2 = xmlDom.getElementsByTagName("special")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
-	
-	var divEl = document.createElement('div');
-	var titleEl = document.createElement('input');
-	titleEl.setAttribute('type', 'text');
-	titleEl.setAttribute('id', "monspec" + i);
-	titleEl.setAttribute('name', "monspec" + i);
+    temp2 = xmlDom.getElementsByTagName("special")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
+    
+    var divEl = document.createElement('div');
+    var titleEl = document.createElement('input');
+    titleEl.setAttribute('type', 'text');
+    titleEl.setAttribute('id', "monspec" + i);
+    titleEl.setAttribute('name', "monspec" + i);
     titleEl.setAttribute('class', "moninputdesc");
-	titleEl.setAttribute('value', temp);
-	var descEl = document.createElement('textarea');
-	descEl.setAttribute('type', 'text');
-	descEl.setAttribute('id', "monspecdesc" + i);
-	descEl.setAttribute('name', "monspecdesc" + i);
+    titleEl.setAttribute('value', temp);
+    var descEl = document.createElement('textarea');
+    descEl.setAttribute('type', 'text');
+    descEl.setAttribute('id', "monspecdesc" + i);
+    descEl.setAttribute('name', "monspecdesc" + i);
     descEl.setAttribute('class', "montextdesc");
-//	descEl.setAttribute('rows', iRows);
-//	descEl.setAttribute('cols', iCols);
-	descEl.value = temp2;
-	
-	divEl.appendChild(titleEl);
-	divEl.appendChild(descEl);
-	document.getElementById("specials").appendChild(divEl);
+    descEl.value = temp2;
+    
+    divEl.appendChild(titleEl);
+    divEl.appendChild(descEl);
+    document.getElementById("specials").appendChild(divEl);
   }
   
   // Monster actions (actions > action)
@@ -864,35 +863,31 @@ function parseTextAsXml(text)
   for(var i = 0; i < iCount; i++)
   {
     temp = xmlDom.getElementsByTagName("actions")[0].getElementsByTagName("action")[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-	temp2 = xmlDom.getElementsByTagName("actions")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
-	
-	var divEl = document.createElement('div');
-	var titleEl = document.createElement('input');
-	titleEl.setAttribute('type', 'text');
-	titleEl.setAttribute('id', "monact" + i);
-	titleEl.setAttribute('name', "monact" + i);
+    temp2 = xmlDom.getElementsByTagName("actions")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
+    
+    var divEl = document.createElement('div');
+    var titleEl = document.createElement('input');
+    titleEl.setAttribute('type', 'text');
+    titleEl.setAttribute('id', "monact" + i);
+    titleEl.setAttribute('name', "monact" + i);
     titleEl.setAttribute('class', "moninputdesc");
-	titleEl.setAttribute('value', temp);
-	var descEl = document.createElement('textarea');
-	descEl.setAttribute('type', 'text');
-	descEl.setAttribute('id', "monactdesc" + i);
-	descEl.setAttribute('name', "monactdesc" + i);
+    titleEl.setAttribute('value', temp);
+    var descEl = document.createElement('textarea');
+    descEl.setAttribute('type', 'text');
+    descEl.setAttribute('id', "monactdesc" + i);
+    descEl.setAttribute('name', "monactdesc" + i);
     descEl.setAttribute('class', "montextdesc");
-//	descEl.setAttribute('rows', iRows);
-//	descEl.setAttribute('cols', iCols);
-	descEl.value = temp2;
-	
-	divEl.appendChild(titleEl);
-	divEl.appendChild(descEl);
-	document.getElementById("actions").appendChild(divEl);
+    descEl.value = temp2;
+    
+    divEl.appendChild(titleEl);
+    divEl.appendChild(descEl);
+    document.getElementById("actions").appendChild(divEl);
   }
   
   // Monster legendary actions (legendactions > action)
   temp = xmlDom.getElementsByTagName("legendactions")[0].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
   var legendDesc = document.getElementById("mondesclegact");
   legendDesc.setAttribute('class', "montextdesc");
-//  legendDesc.setAttribute('rows', iRows);
-//  legendDesc.setAttribute('cols', iCols);
   if(temp != "###") legendDesc.value = temp;
   
   iCount = xmlDom.getElementsByTagName("legendactions")[0].getElementsByTagName("action").length;
@@ -900,27 +895,25 @@ function parseTextAsXml(text)
   for(var i = 0; i < iCount; i++)
   {
     temp = xmlDom.getElementsByTagName("legendactions")[0].getElementsByTagName("action")[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-	temp2 = xmlDom.getElementsByTagName("legendactions")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
-	
-	var divEl = document.createElement('div');
-	var titleEl = document.createElement('input');
-	titleEl.setAttribute('type', 'text');
-	titleEl.setAttribute('id', "monlegact" + i);
-	titleEl.setAttribute('name', "monlegact" + i);
+    temp2 = xmlDom.getElementsByTagName("legendactions")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
+    
+    var divEl = document.createElement('div');
+    var titleEl = document.createElement('input');
+    titleEl.setAttribute('type', 'text');
+    titleEl.setAttribute('id', "monlegact" + i);
+    titleEl.setAttribute('name', "monlegact" + i);
     titleEl.setAttribute('class', "moninputdesc");
-	titleEl.setAttribute('value', temp);
-	var descEl = document.createElement('textarea');
-	descEl.setAttribute('type', 'text');
-	descEl.setAttribute('id', "monlegactdesc" + i);
-	descEl.setAttribute('name', "monlegactdesc" + i);
+    titleEl.setAttribute('value', temp);
+    var descEl = document.createElement('textarea');
+    descEl.setAttribute('type', 'text');
+    descEl.setAttribute('id', "monlegactdesc" + i);
+    descEl.setAttribute('name', "monlegactdesc" + i);
     descEl.setAttribute('class', "montextdesc");
-//	descEl.setAttribute('rows', iRows);
-//	descEl.setAttribute('cols', iCols);
-	descEl.value = temp2;
-	
-	divEl.appendChild(titleEl);
-	divEl.appendChild(descEl);
-	document.getElementById("legendactions").appendChild(divEl);
+    descEl.value = temp2;
+    
+    divEl.appendChild(titleEl);
+    divEl.appendChild(descEl);
+    document.getElementById("legendactions").appendChild(divEl);
   }
   
   // Monster reactions (reactions > action)
@@ -929,27 +922,25 @@ function parseTextAsXml(text)
   for(var i = 0; i < iCount; i++)
   {
     temp = xmlDom.getElementsByTagName("reactions")[0].getElementsByTagName("action")[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-	temp2 = xmlDom.getElementsByTagName("reactions")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
-	
-	var divEl = document.createElement('div');
-	var titleEl = document.createElement('input');
-	titleEl.setAttribute('type', 'text');
-	titleEl.setAttribute('id', "monreact" + i);
-	titleEl.setAttribute('name', "monreact" + i);
+    temp2 = xmlDom.getElementsByTagName("reactions")[0].getElementsByTagName("action")[i].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
+    
+    var divEl = document.createElement('div');
+    var titleEl = document.createElement('input');
+    titleEl.setAttribute('type', 'text');
+    titleEl.setAttribute('id', "monreact" + i);
+    titleEl.setAttribute('name', "monreact" + i);
     titleEl.setAttribute('class', "moninputdesc");
-	titleEl.setAttribute('value', temp);
-	var descEl = document.createElement('textarea');
-	descEl.setAttribute('type', 'text');
-	descEl.setAttribute('id', "monreactdesc" + i);
-	descEl.setAttribute('name', "monreactdesc" + i);
+    titleEl.setAttribute('value', temp);
+    var descEl = document.createElement('textarea');
+    descEl.setAttribute('type', 'text');
+    descEl.setAttribute('id', "monreactdesc" + i);
+    descEl.setAttribute('name', "monreactdesc" + i);
     descEl.setAttribute('class', "montextdesc");
-//	descEl.setAttribute('rows', iRows);
-//	descEl.setAttribute('cols', iCols);
-	descEl.value = temp2;
-	
-	divEl.appendChild(titleEl);
-	divEl.appendChild(descEl);
-	document.getElementById("reactions").appendChild(divEl);
+    descEl.value = temp2;
+    
+    divEl.appendChild(titleEl);
+    divEl.appendChild(descEl);
+    document.getElementById("reactions").appendChild(divEl);
   }
   
   // Monster additional description (mondesc)
@@ -958,8 +949,6 @@ function parseTextAsXml(text)
   {
     document.getElementById("mondesc").value = temp;
     document.getElementById("mondesc").setAttribute('class', "montextdesc");
-//	document.getElementById("mondesc").setAttribute('rows', iRows);
-//	document.getElementById("mondesc").setAttribute('cols', iCols);
   }
   
   // Monster image (image)
@@ -977,7 +966,7 @@ function waitForTextReadComplete(reader)
   reader.onloadend = function(event)
   {
     var text = event.target.result;
-	parseTextAsXml(text);
+      parseTextAsXml(text);
   }
 }
 

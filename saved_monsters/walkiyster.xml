@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<monster>
+	<name>Walkiyster</name>
+	<mtype>
+		<size>medium</size>
+		<type>construct</type>
+		<alignment>unaligned</alignment>
+	</mtype>
+	<ac>17 (plated armor + shield)</ac>
+	<hp>66 (7d8 + 35)</hp>
+	<speed>30 ft.</speed>
+	<abilities>
+		<str>18</str>
+		<dex>8</dex>
+		<con>18</con>
+		<int>2</int>
+		<wis>12</wis>
+		<cha>1</cha>
+	</abilities>
+	<st>###</st>
+	<skills>Perception +4</skills>
+	<damcond>
+		<damimmun>lightning, poison</damimmun>
+		<damresist>bludgeoning, piercing and slashing from nonmagical weapons that aren't adamantine</damresist>
+		<damvuln>###</damvuln>
+		<conimmun>charmed, exhaustion, frightened, paralyzed, petrified, poisoned</conimmun>
+		<conresist>###</conresist>
+		<convuln>###</convuln>
+	</damcond>
+	<senses>darkvision 120 ft., passive Perception 14</senses>
+	<lang>can only speak, when controlled by another creature</lang>
+	<cr>5</cr>
+	<special>
+		<action>
+			<title>Lightning Absorption</title>
+			<desc>Whenever the Walkiyster is subjected to lightning damage, it takes no damage and instead regains a number of hit points equal to half the lightning damage dealt rounded down.</desc>
+		</action>
+		<action>
+			<title>Remote Control</title>
+			<desc>The Walkiyster can either be given a single command and follow those steps or be controlled directly by another creature. When controlled, its eyes glow brightly and the Walkiyster gains the Intelligence, Wisdom and Charisma scores of the creature controlling it. That creature is incapacitated for the duration.</desc>
+		</action>
+	</special>
+	<actions>
+		<action>
+			<title>Multiattack</title>
+			<desc>The Walkiyster makes two slam attacks.</desc>
+		</action>
+		<action>
+			<title>Slam</title>
+			<desc>Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) bludgeoning damage.</desc>
+		</action>
+		<action>
+			<title>Lightning Bolt (Recharge 6)</title>
+			<desc>The gemstone in the torso of a Walkiyster produces a large lighting bolt forming a line of 100 feet long and 5 feet wide. Each creature in the line must make a DC 15 Dexterity saving throw. A creature takes 28 (8d6) lightning damage on a failed save and half as much on a successful save.</desc>
+		</action>
+	</actions>
+	<legendactions>
+		<desc>###</desc>
+	</legendactions>
+	<reactions>
+	</reactions>
+	<mondesc>A construct with metallic pistons that make up its movable parts. Inside the torso, hidden by metal plating, it has a large magically enchanted blue spinel gemstone (500gp) producing energy in the form of lightning. Its bulky torso ends with a head that has two yellow quartz gemstones (50gp each) instead of eyes.
+
+Well Armored.
+The Walkiyster is well armored with plated type armor that mostly protects the blue spinel gemstone inside its torso. On one of its forearms it has a smaller plate in the form of a shield to further protect itself.</mondesc>
+	<image>./image/walkiyster.jpg</image>
+</monster>

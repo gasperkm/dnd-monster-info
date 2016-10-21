@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<monster>
+	<name>Lumquon</name>
+	<mtype>
+		<size>medium</size>
+		<type>construct</type>
+		<alignment>unaligned</alignment>
+	</mtype>
+	<ac>15 (natural armor)</ac>
+	<hp>76 (8d8 + 40)</hp>
+	<speed>30 ft.</speed>
+	<abilities>
+		<str>16</str>
+		<dex>12</dex>
+		<con>18</con>
+		<int>3</int>
+		<wis>10</wis>
+		<cha>1</cha>
+	</abilities>
+	<st>Dex +4</st>
+	<skills>###</skills>
+	<damcond>
+		<damimmun>fire, poison</damimmun>
+		<damresist>bludgeoning, piercing and slashing from nonmagical weapons that aren't adamantine</damresist>
+		<damvuln>###</damvuln>
+		<conimmun>charmed, exhaustion, frightened, paralyzed, petrified, poisoned</conimmun>
+		<conresist>###</conresist>
+		<convuln>###</convuln>
+	</damcond>
+	<senses>darkvision 120 ft., passive Perception 10</senses>
+	<lang>can only speak, when controlled by another creature</lang>
+	<cr>5</cr>
+	<special>
+		<action>
+			<title>Fire Absorption</title>
+			<desc>Whenever the Lumquon is subjected to fire damage, it takes no damage and instead regains a number of hit points equal to half the fire damage dealt rounded down.</desc>
+		</action>
+		<action>
+			<title>Remote Control</title>
+			<desc>The Lumquon can either be given a single command and follow those steps or be controlled directly by another creature. When controlled, its eyes glow brightly and the Lumquon gains the Intelligence, Wisdom and Charisma scores of the creature controlling it. That creature is incapacitated for the duration.</desc>
+		</action>
+	</special>
+	<actions>
+		<action>
+			<title>Multiattack</title>
+			<desc>The Lumquon makes two slam attacks.</desc>
+		</action>
+		<action>
+			<title>Slam</title>
+			<desc>Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 16 (3d8 + 3) bludgeoning and fire damage (1d8 of these is fire damage).</desc>
+		</action>
+		<action>
+			<title>Torrent of Flames (Recharge 6)</title>
+			<desc>The gemstone in the torso of a Lumquon produces a torrent of flames in a 30-foot cone. Each creature inside the cone must make a DC 15 Dexterity saving throw. A creature takes 36 (8d8) fire damage on a failed save and half as much on a successful save.</desc>
+		</action>
+	</actions>
+	<legendactions>
+		<desc>###</desc>
+	</legendactions>
+	<reactions>
+	</reactions>
+	<mondesc>A smaller construct with a large gaping hole in its torso that holds a large magically enchanted red coral gemstone (100gp) producing a torrent of flames. The stone around this region resembles the gaping mouth of a beast. Its head has two piercing blue zircon gemstones (50gp each) instead of eyes.
+
+Crafted from Flame.
+The Lumquon is crafted directly from volcanic rock and with the red coral gemstone producing fire, it deals fire damage on any attack it makes. Any water based attacks on it do little damage, as the water evaporates the moment it touches its form.</mondesc>
+	<image>./image/lumquon.jpg</image>
+</monster>
