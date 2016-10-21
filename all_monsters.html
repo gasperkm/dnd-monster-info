@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+  	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1">
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<!--	<script type="text/javascript" src="js/functions.js"></script>-->
+	<title>Complete monster list</title>
+	
+	<style>	
+	#monsterlinks li
+	{
+		margin: 10px 5px;
+		font-size: 16pt;
+	}
+	</style>
+	
+	<script type="text/javascript">
+	function getList()
+	{
+		$.ajax({
+			url : "all_monster_list.txt",
+			dataType: "text",
+			success : function (data) {
+			
+				var res = data.split("\n");
+				
+				for(var i = 0; i < (res.length); i++)
+				{
+					if(res[i] != "")
+					{
+						var listElem = document.createElement('li');
+						var linkElem = document.createElement('a');
+						linkElem.setAttribute('id', "monlink" + i);
+						linkElem.setAttribute('class', "monlink");
+						linkElem.setAttribute('target', "_self");
+						linkElem.setAttribute('href', "./saved_monsters/" + res[i]);
+						linkElem.innerHTML = res[i];
+						
+						listElem.appendChild(linkElem);
+						document.getElementById("monsterlinks").appendChild(listElem);
+					}
+				}
+			}
+		});
+	}; 
+	</script>
+</head>
+<body onload="getList()">
+	<div>
+		<h1>Complete monster list:</h1>
+		<ul id="monsterlinks">
+		</ul>
+	</div>
+
+</body>
+</html>

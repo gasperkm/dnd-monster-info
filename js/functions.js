@@ -229,20 +229,24 @@ function clearMonster(value)
     getXP(0,0);
     iCount = document.getElementById("nrspecial").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("specials").removeChild(document.getElementById("specials").getElementsByTagName("div")[1]);
+	  addSpecial(1);
+//	  document.getElementById("specials").removeChild(document.getElementById("specials").getElementsByTagName("div")[1]);
     document.getElementById("nrspecial").value = 0;
     iCount = document.getElementById("nraction").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("actions").removeChild(document.getElementById("actions").getElementsByTagName("div")[1]);
+	  addAction(1);
+//	  document.getElementById("actions").removeChild(document.getElementById("actions").getElementsByTagName("div")[1]);
     document.getElementById("nraction").value = 0;
     document.getElementById("mondesclegact").value = "";
     iCount = document.getElementById("nrlegend").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("legendactions").removeChild(document.getElementById("legendactions").getElementsByTagName("div")[1]);
+	  addLegend(1);
+//	  document.getElementById("legendactions").removeChild(document.getElementById("legendactions").getElementsByTagName("div")[1]);
     document.getElementById("nrlegend").value = 0;
     iCount = document.getElementById("nrreaction").value;
     for(var i = 1; i <= iCount; i++)
-	  document.getElementById("reactions").removeChild(document.getElementById("reactions").getElementsByTagName("div")[1]);
+	  addReaction(1);
+//	  document.getElementById("reactions").removeChild(document.getElementById("reactions").getElementsByTagName("div")[1]);
     document.getElementById("nrreaction").value = 0;
     document.getElementById("mondesc").value = "";
 //	document.getElementById("mondesc").setAttribute('rows', iRows);
