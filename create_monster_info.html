@@ -9,13 +9,22 @@
 </head>
 
 <body>
-	<div id="openmonmain" class="option"><p>Display monster info or Edit monster info from XML file</p>
-		<div id="openmon">
-			<div>Open an XML file with monster info: <input type="file" id="files" name="files[]" accept=".xml" /></div>
-		</div>
+	<div id="openmonmain" class="option"><p>Display monster info, Edit monster info from XML file or Convert multiple XML files into HTML</p>
+		<div>Open an XML file with monster info: <input type="file" id="files" name="files[]" accept=".xml" /></div>
 		<div>Clear the current monster: <button type="button" onclick="clearMonster(0)">Clear</button></div>
 		<div>Use general commoner stats: <button type="button" onclick="clearMonster(1)">Commoner stats</button></div>
 		<div>Go to bottom of page to export to XML and HTML: <button type="button" onclick="gotoBottom()">Go to bottom</button></div>
+		<div>Open multiple XML files and convert them into a combined HTML page: <select id="exporttype">
+			<option value="a4">A4 paper size</option>
+			<option value="mobile">Small/mobile</option>
+			<option value="a5">A5 paper size</option>
+		</select><!-- TODO: selective paper size (http://stackoverflow.com/questions/16649943/css-to-set-a4-paper-size)--> <input type="file" id="convertFiles" name="convertFiles[]" accept=".xml" multiple /><br/>
+		<div><span class="maintitle">The converted monster list (HTML):</span></div>
+		<textarea id="convertxml" name="convertxml"></textarea>
+		<div class="maindiv">
+			<button type="button" onclick="showConvert()">Show the converted monster list in a new window</button>
+		</div>
+		</div>
 	</div>
 	<div id="result">Information: </div>
 	<br/>
@@ -72,12 +81,12 @@
 		<br/>
 		<div class="maindiv">
 			<div><span class="maintitle">Monster abilities:</span></div>
-			<div class="sublist"><span class="mainsubtitle">Strength:</span><input type="number" id="monstr" name="monstr" value="" onchange="calcModifier(0)"> <span id="monstrmod"></span></div>
-			<div class="sublist"><span class="mainsubtitle">Dexterity:</span><input type="number" id="mondex" name="mondex" value="" onchange="calcModifier(1)"> <span id="mondexmod"></span></div>
-			<div class="sublist"><span class="mainsubtitle">Constitution:</span><input type="number" id="moncon" name="moncon" value="" onchange="calcModifier(2)"> <span id="monconmod"></span></div>
-			<div class="sublist"><span class="mainsubtitle">Intelligence:</span><input type="number" id="monint" name="monint" value="" onchange="calcModifier(3)"> <span id="monintmod"></span></div>
-			<div class="sublist"><span class="mainsubtitle">Wisdom:</span><input type="number" id="monwis" name="monwis" value="" onchange="calcModifier(4)"> <span id="monwismod"></span></div>
-			<div class="sublist"><span class="mainsubtitle">Charisma:</span><input type="number" id="moncha" name="moncha" value="" onchange="calcModifier(5)"> <span id="monchamod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Strength:</span><input type="number" id="monstr" name="monstr" value="" onchange="calcModifier(0,0)"> <span id="monstrmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Dexterity:</span><input type="number" id="mondex" name="mondex" value="" onchange="calcModifier(1,0)"> <span id="mondexmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Constitution:</span><input type="number" id="moncon" name="moncon" value="" onchange="calcModifier(2,0)"> <span id="monconmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Intelligence:</span><input type="number" id="monint" name="monint" value="" onchange="calcModifier(3,0)"> <span id="monintmod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Wisdom:</span><input type="number" id="monwis" name="monwis" value="" onchange="calcModifier(4,0)"> <span id="monwismod"></span></div>
+			<div class="sublist"><span class="mainsubtitle">Charisma:</span><input type="number" id="moncha" name="moncha" value="" onchange="calcModifier(5,0)"> <span id="monchamod"></span></div>
 		</div>
 		<br/>
 		<div class="maindiv"><span class="maintitle">Monster saving throws:</span><input type="text" id="monst" name="monst" value=""></div>
