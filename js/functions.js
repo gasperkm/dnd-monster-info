@@ -779,7 +779,7 @@ function parseTextAsXml(text, type, curfile, nrfile)
   }
   
   // Monster reactions (reactions > action)
-  iCount = xmlDom.getElementsByTagName("reactions")[0].getElementsByTagName("reaction").length;
+  iCount = xmlDom.getElementsByTagName("reactions")[0].getElementsByTagName("action").length;
   if(type == 0)
     document.getElementById("nrreaction").value = iCount;
   else if( (type == 1) && (iCount != 0) )
