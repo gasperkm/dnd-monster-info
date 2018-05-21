@@ -857,8 +857,44 @@ function parseTextAsXml(text, type, curfile, nrfile)
 	}
     else if( (type == 1) && (Number(curfile) == Number(nrfile-1)) )
 	{
-      ConvertedString += String(getHtmlFileFooter(1));
-      document.getElementById("convertxml").value = ConvertedString;
+          ConvertedString += String(getHtmlFileFooter(1));
+          document.getElementById("convertxml").value = ConvertedString;
+
+          // Check for old download links & export name --------
+          var outputconvert = $("#convertlink");
+          var prevLink = document.querySelector('#convertlink a');
+          if(prevLink) {
+            window.URL.revokeObjectURL(prevLink.href);
+            prevLink.remove();
+          }
+	  var convertName;
+          if(document.getElementById("exporttype").value == "mobile")
+            convertName = "all_monsters_small.html";
+	  else
+            convertName = "all_monsters.html";
+          // Check for old download links & export name --------
+          
+          // Create download link for HTML ---------------------
+          var blobConvert = new Blob([ConvertedString], {type: 'text/plain'});
+          
+          var aConvert = document.createElement('a');
+          aConvert.download = convertName;
+          aConvert.href = window.URL.createObjectURL(blobConvert);
+          aConvert.textContent = "Download converted HTML file of all monsters";
+          aConvert.dataset.downloadurl = ['text/plain', aConvert.download, aConvert.href].join(':');
+          aConvert.draggable = true;
+          aConvert.classList.add('dragout');
+          
+          outputconvert.append(aConvert);
+          
+          aConvert.onclick = function(e) {
+            aConvert.textContent = "Convert again or change paper size to refresh HTML link";
+            aConvert.dataset.disabled = true;
+            setTimeout(function() {
+              window.URL.revokeObjectURL(aConvert.href);
+            }, 1500);
+          };
+          // Create download link for HTML ---------------------
 	}
   }
 }
@@ -1439,6 +1475,29 @@ function exportMonster()
     loadError = 1;
     return;
   }
+
+  // Check for old download links & export name --------
+  var outputxml = $("#xmllink");
+  var outputhtml = $("#htmllink");
+  var prevLink = document.querySelector('#xmllink a');
+  if(prevLink) {
+    window.URL.revokeObjectURL(prevLink.href);
+    prevLink.remove();
+  }
+  prevLink = document.querySelector('#htmllink a');
+  if(prevLink) {
+    window.URL.revokeObjectURL(prevLink.href);
+    prevLink.remove();
+  }
+  var baseExportName = document.getElementById("monname").value;
+  baseExportName = baseExportName.toLowerCase();
+  baseExportName = baseExportName.replace(/[)]/g,'');
+  baseExportName = baseExportName.replace(/ [(]/g,'_');
+  baseExportName = baseExportName.replace(/[(]/g,'_');
+  baseExportName = baseExportName.replace(/ /g,'-');
+  var xmlExportName = baseExportName + ".xml";
+  var htmlExportName = baseExportName + ".html";
+  // Check for old download links & export name --------
   
   // Prepare the XML -----------------------------------
   var xmlString, htmlString;
@@ -1551,6 +1610,28 @@ function exportMonster()
   document.getElementById("savexml").value = xmlString;
   // Prepare the XML -----------------------------------
   
+  // Create download link for XML ----------------------
+  var blobXml = new Blob([xmlString], {type: 'text/plain'});
+
+  var aXml = document.createElement('a');
+  aXml.download = xmlExportName;
+  aXml.href = window.URL.createObjectURL(blobXml);
+  aXml.textContent = "Download XML file";
+  aXml.dataset.downloadurl = ['text/plain', aXml.download, aXml.href].join(':');
+  aXml.draggable = true;
+  aXml.classList.add('dragout');
+
+  outputxml.append(aXml);
+
+  aXml.onclick = function(e) {
+    aXml.textContent = "Export monster to refresh XML link";
+    aXml.dataset.disabled = true;
+    setTimeout(function() {
+      window.URL.revokeObjectURL(aXml.href);
+    }, 1500);
+  };
+  // Create download link for XML ----------------------
+
   // Prepare the HTML ----------------------------------
   htmlString = "<!doctype html>\n<html>\n<head>\n\t<meta charset='utf-8'>\n\t<meta name='viewport' content='initial-scale=1'>\n\t<title>" + document.getElementById("monname").value + " &raquo; Dungeons &amp; Dragons - D&amp;D 5</title>\n<style>\n";
   htmlString += "html {font-size:62.5%;}\nbody {padding:0; margin:0; background:white url(\"../images/fond.jpg\") repeat;}\n.titre1 {font-size:2.4rem; text-align:center; padding:20px 10px 10px 10px; font-weight:bold;}\n.titre2 {font-size:1.8rem; text-align:center; padding:10px 10px 0px 10px;}\n.titre3 {font-size:1.4rem; text-align:center; padding: 5px 10px 20px 10px; margin:0 33% 10px 33%; border-bottom:2px solid black;}\n.bloc {width:33%; min-width:400px; padding:15px; margin:0; box-sizing:border-box; font-family: Georgia, \"Times New Roman\", serif; font-size:1.2rem; line-height:140%; text-align:left; Page-Break-Inside:avoid}\n.bloc table {margin:8px 0 0 0; padding:0; }\n.bloc table th {font-weight:bold; font-size:1.0rem; vertical-align:bottom; border-bottom:1px solid black}\n.bloc table td {min-width:25px; font-size:1.0rem; }\n.sansSerif {line-height:140%; font-family: arial, sans-serif; font-size:1.2rem; }\n.nom {padding:0; text-transform:uppercase; letter-spacing:1px; color:#6D0000; font-size:1.6rem; font-weight:bold; }\n.nom:first-letter {font-size:2.4rem;}\n.trad {float:right; margin:2px 0 2px 0; font-family: verdana, arial, sans-serif; font-size:1.2rem;}\n.trad a:link, .trad a:hover, .trad a:visited {color:#B30303; font-weight:normal;}\n.niveau {padding:2px 0 8px 0;}\n.type {padding:2px 0 2px 0;}\n.carac {display:inline-block; padding-left:15px; text-align:center}\n.description {padding:8px 0 8px 0; text-align:justify;}\n.red {color:#6D0000;}\n.rub {color:#6D0000; margin:10px 0 5px 0; border-bottom:1px solid #B30303; font-size:1.4rem; text-transform:uppercase; font-weight:bold;}\n.rub:first-letter {font-size:1.6rem;}\n.source {padding:8px 0 4px 0; text-align:left; letter-spacing:-1px; font-family: verdana, arial, sans-serif; font-size:1.0rem;}\np {padding:0; margin:3px 0 3px 0;}\n.center {text-align:center;}\n.petit {font-size:1.1rem;}\n.trespetit {font-size:1.0rem;}\ntable.carac {margin:0}\ntable.carac td	{padding:0 15px 0 0; font-size:1.2rem;}\nimg.picture {max-width:95%; border:4px solid #888; text-align:center;}\ndiv img.sep-monster {margin:3px 0 3px 0; width=90%; height=4px;}\ndiv svg {width:100%; height:5px;}\ndiv .variant {background-color:#DBE2C2; border-top:4px solid #404040; border-bottom:4px solid #404040; padding:10px; margin:10px 0 0 0;}\n.colG {display:inline-block; width:47%; margin:20px 1% 0 2%; vertical-align: top;}\n.colD {display:inline-block; width:47%; margin:20px 2% 0 1%; vertical-align: top;}\n.colG .bloc {width:100%;}\n.colD .bloc {width:100%;}\n.niveauSort {width:50%; font-size:1.8rem; font-weight:bold; text-align:center; background-color:white; color:black; border:3px solid black; padding:5px; margin:1% 25% 0 25%;}\nimg.poison {float:right; border:0px; margin:0 0 5px 10px}\n.erreur {font-weight:bold; color:red;}\n.gras {font-weight:bold;}\n.gris {background-color:#333333; color:#BBBBBB;}\n.blanc {background-color:#FFFFFF; color:#000000; font-weight:bold;}\ntable.rencontre	td {font-size:1.2rem; }\ntable.resultat {border:1px solid black; border-collapse:separate; border-spacing:0;}\ntable.resultat td {font-size:1.2rem; width:80px; text-align:center; padding:6px;}\n.bloc input {font-size:18px; padding:4px;}\n.bloc input.grise {color:#888}\n.bloc input:focus {color:#000}\n.bloc .output {font-size:42px; line-height:1.2; padding:10px;}\n.bloc select {font-size:14px; padding:4px;}\n@media print {\n\thtml {font-size:50%;}\n\t.bloc {width:100%; min-width:200px; padding:2%;}\n\t.sansSerif {line-height:130%;}\n\t.petit {line-height:120%;}\n\t.trespetit {line-height:110%;}\n}\n@media only screen and (max-device-width:980px) {\n\thtml {font-size:87.5%;}\n\t.colG {width:100%; margin:20px 0 0 0;}\n\t.colD {width:100%; margin:20px 0 0 0;}\n\t.bloc {width:100%;}\n\t.trad {float:none; padding-left:0px;}\n}\n";
@@ -1669,6 +1750,28 @@ function exportMonster()
 
   document.getElementById("savehtml").value = htmlString;
   // Prepare the HTML ----------------------------------
+  
+  // Create download link for HTML ---------------------
+  var blobHtml = new Blob([htmlString], {type: 'text/plain'});
+
+  var aHtml = document.createElement('a');
+  aHtml.download = htmlExportName;
+  aHtml.href = window.URL.createObjectURL(blobHtml);
+  aHtml.textContent = "Download HTML file";
+  aHtml.dataset.downloadurl = ['text/plain', aHtml.download, aHtml.href].join(':');
+  aHtml.draggable = true;
+  aHtml.classList.add('dragout');
+
+  outputhtml.append(aHtml);
+
+  aHtml.onclick = function(e) {
+    aHtml.textContent = "Export monster to refresh HTML link";
+    aHtml.dataset.disabled = true;
+    setTimeout(function() {
+      window.URL.revokeObjectURL(aHtml.href);
+    }, 1500);
+  };
+  // Create download link for HTML ---------------------
 }
 
 function showHtml()
@@ -1710,7 +1813,7 @@ function waitForTextReadComplete(reader, type, curfile, nrfile)
   {
     var text = event.target.result;
 	if(type === "files")
-      parseTextAsXml(text, 0, curfile, nrfile);
+          parseTextAsXml(text, 0, curfile, nrfile);
 	else if(type === "convertFiles")
 	  parseTextAsXml(text, 1, curfile, nrfile);
 	else
